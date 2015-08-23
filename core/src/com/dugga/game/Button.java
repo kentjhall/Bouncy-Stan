@@ -61,18 +61,34 @@ public class Button {
     public void draw(SpriteBatch batch){
         buttonSprite.setScale((float) growWidth, (float) growHeight);
         buttonSprite.draw(batch);
-        if (growWidth<1 && !doneGrowing) {
-            growWidth += 0.05;
+        if (Gdx.graphics.getWidth()>=1080) {
+            if (growWidth < 1 && !doneGrowing) {
+                growWidth += 0.05;
+            } else if (growWidth >= 1) {
+                doneGrowing = true;
+            }
         }
-        else if(growWidth>=1){
-            doneGrowing=true;
+        else{
+            if (growWidth < 0.8 && !doneGrowing) {
+                growWidth += 0.05;
+            } else if (growWidth >= 0.8) {
+                doneGrowing = true;
+            }
         }
 
-        if (growHeight<1 && !doneGrowing){
-            growHeight+=0.05;
+        if (Gdx.graphics.getHeight()>=1720) {
+            if (growHeight < 1 && !doneGrowing) {
+                growHeight += 0.05;
+            } else if (growHeight >= 1) {
+                doneGrowing = true;
+            }
         }
-        else if (growHeight>=1){
-            doneGrowing=true;
+        else{
+            if (growHeight < 0.8 && !doneGrowing) {
+                growHeight += 0.05;
+            } else if (growHeight >= 0.8) {
+                doneGrowing = true;
+            }
         }
         switch (buttonType){
             case RESTART:

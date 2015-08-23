@@ -418,9 +418,9 @@ public class Grid {
 
                     emptyBox = boxCount;
                     if (MyGdxGame.getPlayer().getScore() > MyGdxGame.getPlayer().getStartingHighScore() && MyGdxGame.getPlayer().getStartingHighScore() > 0) {
-                        MyGdxGame.drawScore(hitX + width / 2, hitY + height / 2, MyGdxGame.ScoreType.SCORE, null);
+                        MyGdxGame.drawScore(Gdx.graphics.getWidth()-Gdx.graphics.getWidth()/18, Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/96, MyGdxGame.ScoreType.SCORE, null);
                     } else {
-                        MyGdxGame.drawScore(hitX + width / 2, hitY + height / 2, MyGdxGame.ScoreType.SCORE, Color.BLACK);
+                        MyGdxGame.drawScore(Gdx.graphics.getWidth()-Gdx.graphics.getWidth()/18, Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/96, MyGdxGame.ScoreType.SCORE, Color.BLACK);
                     }
                     break;
                 case 30:

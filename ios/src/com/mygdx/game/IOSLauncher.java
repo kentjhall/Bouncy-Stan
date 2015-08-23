@@ -3,12 +3,19 @@ package com.mygdx.game;
 import org.robovm.apple.foundation.NSAutoreleasePool;
 import org.robovm.apple.uikit.UIApplication;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
+import com.badlogic.gdx.utils.Logger;
 import com.dugga.game.IActivityRequestHandler;
 import com.dugga.game.MyGdxGame;
 
 public class IOSLauncher extends IOSApplication.Delegate implements IActivityRequestHandler{
+    private static final Logger log = new Logger(IOSLauncher.class.getName(), Application.LOG_DEBUG);
+    private static final boolean USE_TEST_DEVICES = true;
+    //private GADBannerView adview;
+    private boolean adsInitialized = false;
+    private IOSApplication iosApplication;
 
     @Override
     protected IOSApplication createApplication() {
