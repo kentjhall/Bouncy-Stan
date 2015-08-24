@@ -37,8 +37,10 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
     private float bannerWidth;
     private float bannerHeight;
     public double screenWidth;
+    private double screenHeight;
     public double adWidth;
     public double adHeight;
+    private GADRequest request;
 
     @Override
     protected IOSApplication createApplication() {
@@ -52,18 +54,19 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
 
         final CGSize screenSize = UIScreen.getMainScreen().getBounds().getSize();
         screenWidth = screenSize.getWidth();
+        screenHeight=screenSize.getHeight();
 
         final CGSize adSize = adview.getBounds().getSize();
         adWidth = adSize.getWidth();
         adHeight = adSize.getHeight();
 
+        bannerWidth = (float) screenWidth;
+        bannerHeight = (float) (bannerWidth / adWidth * adHeight);
+
         window=new UIWindow(adview.getBounds());
         window.setRootViewController(viewController);
 
-//        log.debug(String.format("Hidding ad. size[%s, %s]", adWidth, adHeight));
-
-        bannerWidth = (float) screenWidth;
-        bannerHeight = (float) (bannerWidth / adWidth * adHeight);
+        adview.setFrame(new CGRect((screenWidth / 2) - adWidth / 2, screenHeight-adHeight, bannerWidth, bannerHeight));
 
         return iosApplication;
     }
@@ -82,7 +85,7 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
         adview.setRootViewController(viewController);
         viewController.getView().addSubview(adview);
 
-            final GADRequest request = GADRequest.create();
+            request = GADRequest.create();
 //            if (USE_TEST_DEVICES) {
 //                final NSArray<?> testDevices = new NSArray<NSObject>(
 //                        new NSString(GADRequest.GAD_SIMULATOR_ID));
@@ -97,8 +100,7 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
                 }
 
                 @Override
-                public void didFailToReceiveAd(GADBannerView view,
-                                               GADRequestError error) {
+                public void didFailToReceiveAd(GADBannerView view, GADRequestError error) {
                     super.didFailToReceiveAd(view, error);
                 }
             });
