@@ -6,9 +6,16 @@
 
     <supports-screens
         android:smallScreens="false"
-        android:normalScreens="true"
+        android:normalScreens="false"
         android:largeScreens="true"
         android:xlargeScreens="true" />
+
+    <compatible-screens>
+        <screen android:screenSize="large" android:screenDensity="xhdpi" />
+        <screen android:screenSize="large" android:screenDensity="xxhdpi" />
+        <screen android:screenSize="xlarge" android:screenDensity="xhdpi" />
+        <screen android:screenSize="xlarge" android:screenDensity="xxhdpi" />
+    </compatible-screens>
 
     <!-- Include required permissions for Google Mobile Ads to run-->
     <uses-permission android:name="android.permission.INTERNET"/>
