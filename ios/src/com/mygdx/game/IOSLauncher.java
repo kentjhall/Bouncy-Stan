@@ -40,17 +40,17 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
         config.orientationLandscape=false;
         config.orientationPortrait=true;
 
-        //initializeAds();
+        //log.debug("testing");
 
-        final CGSize screenSize = UIScreen.getMainScreen().getBounds().getSize();
+//        final CGSize screenSize = UIScreen.getMainScreen().getBounds().getSize();
 //        screenWidth = screenSize.getWidth();
-//
+
 //        final CGSize adSize = adview.getBounds().getSize();
 //        adWidth = adSize.getWidth();
 //        adHeight = adSize.getHeight();
-//
+
 //        log.debug(String.format("Hidding ad. size[%s, %s]", adWidth, adHeight));
-//
+
 //        bannerWidth = (float) screenWidth;
 //        bannerHeight = (float) (bannerWidth / adWidth * adHeight);
 
@@ -66,17 +66,14 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
 
 
     public void initializeAds() {
-        if (!adsInitialized) {
             log.debug("Initalizing ads...");
-
-            adsInitialized = true;
 
             adview = new GADBannerView(GADAdSize.smartBannerPortrait());
             adview.setAdUnitID("ca-app-pub-4743789296025031/7095109830"); //put your secret key here
             adview.setRootViewController(iosApplication.getUIViewController());
             iosApplication.getUIViewController().getView().addSubview(adview);
 
-            //final GADRequest request = GADRequest.create();
+            final GADRequest request = GADRequest.create();
 //            if (USE_TEST_DEVICES) {
 //                final NSArray<?> testDevices = new NSArray<NSObject>(
 //                        new NSString(GADRequest.GAD_SIMULATOR_ID));
@@ -99,26 +96,25 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
                 }
             });
 
-            adview.loadRequest(new GADRequest());
+            adview.loadRequest(request);
 
             log.debug("Initalizing ads complete.");
         }
-    }
 
     @Override
     public void showAds(adState show) {
 
-        switch (show){
-            case LOAD:
-                adview.setFrame(new CGRect((screenWidth / 2) - adWidth / 2, 0, bannerWidth, bannerHeight));
-                break;
-            case SHOW:
-                adview.setFrame(new CGRect((screenWidth / 2) - adWidth / 2, 0, bannerWidth, bannerHeight));
-                break;
-            case HIDE:
-                adview.setFrame(new CGRect(0, -bannerHeight, bannerWidth, bannerHeight));
-                break;
-        }
+//        switch (show){
+//            case LOAD:
+//                adview.setFrame(new CGRect((screenWidth / 2) - adWidth / 2, 0, bannerWidth, bannerHeight));
+//                break;
+//            case SHOW:
+//                adview.setFrame(new CGRect((screenWidth / 2) - adWidth / 2, 0, bannerWidth, bannerHeight));
+//                break;
+//            case HIDE:
+//                adview.setFrame(new CGRect(0, -bannerHeight, bannerWidth, bannerHeight));
+//                break;
+//        }
     }
 
 }
