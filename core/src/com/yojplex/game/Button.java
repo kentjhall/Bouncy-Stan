@@ -1,4 +1,4 @@
-package com.dugga.game;
+package com.yojplex.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -43,7 +43,7 @@ public class Button {
                 buttonImg=new Texture("retryButton.png");
                 break;
         }
-        hitBox=new Rectangle(loc.x+width*MyGdxGame.masterScale/4, loc.y+height*MyGdxGame.masterScale*2, width*MyGdxGame.masterScale, height*MyGdxGame.masterScale);
+        hitBox=new Rectangle(loc.x+width* com.yojplex.game.MyGdxGame.masterScale/4, loc.y+height* com.yojplex.game.MyGdxGame.masterScale*2, width* com.yojplex.game.MyGdxGame.masterScale, height* com.yojplex.game.MyGdxGame.masterScale);
         this.buttonType=buttonType;
         growWidth=0;
         growHeight=0;
@@ -61,15 +61,15 @@ public class Button {
     public void draw(SpriteBatch batch){
         buttonSprite.setScale((float) growWidth, (float) growHeight);
         buttonSprite.draw(batch);
-            if (growWidth < 1*MyGdxGame.masterScale && !doneGrowing) {
+            if (growWidth < 1* com.yojplex.game.MyGdxGame.masterScale && !doneGrowing) {
                 growWidth += 0.05;
-            } else if (growWidth >= 1*MyGdxGame.masterScale) {
+            } else if (growWidth >= 1* com.yojplex.game.MyGdxGame.masterScale) {
                 doneGrowing = true;
             }
 
-            if (growHeight < 1*MyGdxGame.masterScale && !doneGrowing) {
+            if (growHeight < 1* com.yojplex.game.MyGdxGame.masterScale && !doneGrowing) {
                 growHeight += 0.05;
-            } else if (growHeight >= 1*MyGdxGame.masterScale) {
+            } else if (growHeight >= 1* com.yojplex.game.MyGdxGame.masterScale) {
                 doneGrowing = true;
             }
 
@@ -91,13 +91,13 @@ public class Button {
                         buttonDown=false;
                     }
                     if(hitBox.contains(Gdx.input.getX(), Gdx.input.getY())) {
-                        if (!buttonDown && goButton && growWidth>=1*MyGdxGame.masterScale && growHeight>=1*MyGdxGame.masterScale) {
-                            MyGdxGame.getMainMenu().setStart(false);
-                            MyGdxGame.getMainMenu().setCircleWidth(0);
-                            MyGdxGame.getMainMenu().setCircleHeight(0);
-                            MyGdxGame.getMainMenu().setPlayerSet(true);
-                            MyGdxGame.getDeathMenu().dispose();
-                            MyGdxGame.getRequestHandler().showAds(IActivityRequestHandler.adState.HIDE);
+                        if (!buttonDown && goButton && growWidth>=1* com.yojplex.game.MyGdxGame.masterScale && growHeight>=1* com.yojplex.game.MyGdxGame.masterScale) {
+                            com.yojplex.game.MyGdxGame.getMainMenu().setStart(false);
+                            com.yojplex.game.MyGdxGame.getMainMenu().setCircleWidth(0);
+                            com.yojplex.game.MyGdxGame.getMainMenu().setCircleHeight(0);
+                            com.yojplex.game.MyGdxGame.getMainMenu().setPlayerSet(true);
+                            com.yojplex.game.MyGdxGame.getDeathMenu().dispose();
+                            com.yojplex.game.MyGdxGame.getRequestHandler().showAds(com.yojplex.game.IActivityRequestHandler.adState.HIDE);
                         }
                     }
                 }

@@ -1,4 +1,4 @@
-package com.dugga.game;
+package com.yojplex.game;
 
 import com.badlogic.gdx.Gdx;
 

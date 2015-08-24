@@ -1,4 +1,4 @@
-package com.dugga.game;
+package com.yojplex.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -37,13 +37,13 @@ public class MyGdxGame extends ApplicationAdapter {
     private Texture splashImg;
     private double splashAlpha;
     private double batchAlpha;
-    private static IActivityRequestHandler requestHandler;
+    private static com.yojplex.game.IActivityRequestHandler requestHandler;
     public enum ScoreType{
         SCORE, END
     }
     public static float masterScale;
 
-    public MyGdxGame(IActivityRequestHandler handler) {
+    public MyGdxGame(com.yojplex.game.IActivityRequestHandler handler) {
         requestHandler = handler;
     }
 
@@ -292,7 +292,7 @@ public class MyGdxGame extends ApplicationAdapter {
         return endFontLayout;
     }
 
-    public static IActivityRequestHandler getRequestHandler(){
+    public static com.yojplex.game.IActivityRequestHandler getRequestHandler(){
         return requestHandler;
     }
 

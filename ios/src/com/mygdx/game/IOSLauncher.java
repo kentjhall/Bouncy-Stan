@@ -2,8 +2,8 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import com.dugga.game.IActivityRequestHandler;
-import com.dugga.game.MyGdxGame;
+import com.yojplex.game.IActivityRequestHandler;
+import com.yojplex.game.MyGdxGame;
 
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.coregraphics.CGSize;

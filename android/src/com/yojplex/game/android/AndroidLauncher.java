@@ -1,4 +1,4 @@
-package com.dugga.game.android;
+package com.yojplex.game.android;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,8 +10,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
-import com.dugga.game.IActivityRequestHandler;
-import com.dugga.game.MyGdxGame;
+import com.yojplex.game.IActivityRequestHandler;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -46,7 +45,7 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 		layout.addView(adView);
 
 		// Create the libgdx View
-		gameView = initializeForView(new MyGdxGame(this));
+		gameView = initializeForView(new com.yojplex.game.MyGdxGame(this));
 		layout.addView(gameView);
 
 		// Hook it all up

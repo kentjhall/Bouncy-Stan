@@ -1,4 +1,4 @@
-package com.dugga.game;
+package com.yojplex.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -90,7 +90,7 @@ public class Grid {
         drawInstruct=true;
         moveLayout=new GlyphLayout();
         moveFont=new BitmapFont(Gdx.files.internal("fonts/scoreFont3.fnt"),Gdx.files.internal("fonts/scoreFont3.png"),false);
-        moveFont.getData().setScale(0.75f*MyGdxGame.masterScale, 0.9f*MyGdxGame.masterScale);
+        moveFont.getData().setScale(0.75f* MyGdxGame.masterScale, 0.9f* MyGdxGame.masterScale);
         moveLayout.setText(moveFont, "Tilt to Move Stan");
 //        twinkleCount=0;
 //        twinkleOn=true;
@@ -418,9 +418,9 @@ public class Grid {
 
                     emptyBox = boxCount;
                     if (MyGdxGame.getPlayer().getScore() > MyGdxGame.getPlayer().getStartingHighScore() && MyGdxGame.getPlayer().getStartingHighScore() > 0) {
-                        MyGdxGame.drawScore(Gdx.graphics.getWidth()-Gdx.graphics.getWidth()/18, Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/96, MyGdxGame.ScoreType.SCORE, null);
+                        MyGdxGame.drawScore(Gdx.graphics.getWidth() - Gdx.graphics.getWidth() / 18, Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 96, MyGdxGame.ScoreType.SCORE, null);
                     } else {
-                        MyGdxGame.drawScore(Gdx.graphics.getWidth()-Gdx.graphics.getWidth()/18, Gdx.graphics.getHeight()-Gdx.graphics.getHeight()/96, MyGdxGame.ScoreType.SCORE, Color.BLACK);
+                        MyGdxGame.drawScore(Gdx.graphics.getWidth() - Gdx.graphics.getWidth() / 18, Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 96, MyGdxGame.ScoreType.SCORE, Color.BLACK);
                     }
                     break;
                 case 30:

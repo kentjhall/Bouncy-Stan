@@ -1,4 +1,4 @@
-package com.dugga.game;
+package com.yojplex.game;
 
 /**
  * Created by Kent on 8/22/2015.

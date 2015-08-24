@@ -1,4 +1,4 @@
-package com.dugga.game;
+package com.yojplex.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -29,7 +29,7 @@ public class DeathMenu{
         width = 810;
         height=810;
         loc=new Vector2(Gdx.graphics.getWidth()/2-width/2, Gdx.graphics.getHeight()/2-height/2);
-        restartButton=new Button(Button.Type.RESTART, (int)loc.x+(int)(width)/2, (int)loc.y+(int)(height)/2-(int)(200*MyGdxGame.masterScale));
+        restartButton=new Button(Button.Type.RESTART, (int)loc.x+(int)(width)/2, (int)loc.y+(int)(height)/2-(int)(200* com.yojplex.game.MyGdxGame.masterScale));
         growWidth=0.1;
         growHeight=0.1;
         menuSprite=new Sprite(menuImg, width, height);
@@ -40,16 +40,16 @@ public class DeathMenu{
 
     public void draw(SpriteBatch batch){
         if (showAd) {
-            MyGdxGame.getRequestHandler().showAds(IActivityRequestHandler.adState.SHOW);
+            com.yojplex.game.MyGdxGame.getRequestHandler().showAds(IActivityRequestHandler.adState.SHOW);
             showAd=false;
         }
-        MyGdxGame.getScoreFont3().getData().setScale((float) growWidth*MyGdxGame.masterScale, (float) growHeight*MyGdxGame.masterScale);
+        com.yojplex.game.MyGdxGame.getScoreFont3().getData().setScale((float) growWidth* com.yojplex.game.MyGdxGame.masterScale, (float) growHeight* com.yojplex.game.MyGdxGame.masterScale);
         menuSprite.setScale((float) growWidth, (float) growHeight);
         menuSprite.draw(batch);
-        if (growWidth<1*MyGdxGame.masterScale){
+        if (growWidth<1* com.yojplex.game.MyGdxGame.masterScale){
             growWidth+=0.05;
         }
-        if (growHeight<1*MyGdxGame.masterScale){
+        if (growHeight<1* com.yojplex.game.MyGdxGame.masterScale){
             growHeight+=0.05;
         }
 
@@ -61,18 +61,18 @@ public class DeathMenu{
             count=0;
         }
         restartButton.draw(batch);
-        if (MyGdxGame.getPlayer().getScore()>MyGdxGame.getPlayer().getStartingHighScore() && MyGdxGame.getPlayer().getStartingHighScore()>0) {
+        if (com.yojplex.game.MyGdxGame.getPlayer().getScore()> com.yojplex.game.MyGdxGame.getPlayer().getStartingHighScore() && com.yojplex.game.MyGdxGame.getPlayer().getStartingHighScore()>0) {
             if (scoreWhite) {
-                MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550*MyGdxGame.masterScale), MyGdxGame.ScoreType.END, Color.WHITE);
+                com.yojplex.game.MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550 * com.yojplex.game.MyGdxGame.masterScale), com.yojplex.game.MyGdxGame.ScoreType.END, Color.WHITE);
             }
             else if (!scoreWhite) {
-                MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550*MyGdxGame.masterScale), MyGdxGame.ScoreType.END, null);
+                com.yojplex.game.MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550 * com.yojplex.game.MyGdxGame.masterScale), com.yojplex.game.MyGdxGame.ScoreType.END, null);
             }
         }
         else{
-            MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550*MyGdxGame.masterScale), MyGdxGame.ScoreType.END, Color.WHITE);
+            com.yojplex.game.MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550 * com.yojplex.game.MyGdxGame.masterScale), com.yojplex.game.MyGdxGame.ScoreType.END, Color.WHITE);
         }
-        MyGdxGame.getScoreFont3().draw(batch, "Best:" + MyGdxGame.getPlayer().getPrefs().getInteger("highScore"), restartButton.getLocX() - MyGdxGame.getHighScoreLayout().width / 2, (float) (restartButton.getLocY() + 267*MyGdxGame.masterScale));
+        com.yojplex.game.MyGdxGame.getScoreFont3().draw(batch, "Best:" + com.yojplex.game.MyGdxGame.getPlayer().getPrefs().getInteger("highScore"), restartButton.getLocX() - com.yojplex.game.MyGdxGame.getHighScoreLayout().width / 2, (float) (restartButton.getLocY() + 267* com.yojplex.game.MyGdxGame.masterScale));
     }
 
     public void dispose(){
