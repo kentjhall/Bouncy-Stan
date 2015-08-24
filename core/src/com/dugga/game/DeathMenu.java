@@ -43,8 +43,8 @@ public class DeathMenu{
             MyGdxGame.getRequestHandler().showAds(IActivityRequestHandler.adState.SHOW);
             showAd=false;
         }
-        MyGdxGame.getScoreFont3().getData().setScale((float)growWidth, (float)growHeight);
-        menuSprite.setScale((float)growWidth, (float)growHeight);
+        MyGdxGame.getScoreFont3().getData().setScale((float) growWidth, (float) growHeight);
+        menuSprite.setScale((float) growWidth, (float) growHeight);
         menuSprite.draw(batch);
         if (growWidth<1){
             growWidth+=0.05;

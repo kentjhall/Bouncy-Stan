@@ -61,35 +61,18 @@ public class Button {
     public void draw(SpriteBatch batch){
         buttonSprite.setScale((float) growWidth, (float) growHeight);
         buttonSprite.draw(batch);
-        if (Gdx.graphics.getWidth()>=1080) {
             if (growWidth < 1 && !doneGrowing) {
                 growWidth += 0.05;
             } else if (growWidth >= 1) {
                 doneGrowing = true;
             }
-        }
-        else{
-            if (growWidth < 0.8 && !doneGrowing) {
-                growWidth += 0.05;
-            } else if (growWidth >= 0.8) {
-                doneGrowing = true;
-            }
-        }
 
-        if (Gdx.graphics.getHeight()>=1720) {
             if (growHeight < 1 && !doneGrowing) {
                 growHeight += 0.05;
             } else if (growHeight >= 1) {
                 doneGrowing = true;
             }
-        }
-        else{
-            if (growHeight < 0.8 && !doneGrowing) {
-                growHeight += 0.05;
-            } else if (growHeight >= 0.8) {
-                doneGrowing = true;
-            }
-        }
+
         switch (buttonType){
             case RESTART:
                 if (hitBox.contains(Gdx.input.getX(), Gdx.input.getY()) && inputProcessor.touchDown(Gdx.input.getX(), Gdx.input.getY(), 0, 0) && Gdx.input.isTouched()){
