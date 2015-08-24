@@ -101,7 +101,7 @@ public class MainMenu {
         MyGdxGame.getScoreFont().draw(batch, "High Score:" + MyGdxGame.getPlayer().getPrefs().getInteger("highScore"), phoneLoc.x - highScoreLayout.width / 2, 200);
         MyGdxGame.getScoreFont().draw(batch, "Games Played:" + MyGdxGame.getPlayer().getPrefs().getInteger("gamesPlayed"), phoneLoc.x - gamesPlayedLayout.width / 2, 100);
 
-        if (0==0){
+        if (Gdx.input.getAccelerometerY()<1 && Gdx.input.getAccelerometerY()>-1){
             batch.draw(check, phoneLoc.x-phoneWidth/2, phoneLoc.y+(float)(phoneHeight/4.125), phoneWidth, phoneWidth);
             if (circleWidth<300 && circleHeight<300){
                 circleWidth+=5;
