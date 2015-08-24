@@ -43,7 +43,7 @@ public class Button {
                 buttonImg=new Texture("retryButton.png");
                 break;
         }
-        hitBox=new Rectangle(loc.x, loc.y+height*2, width, height);
+        hitBox=new Rectangle(loc.x+width*MyGdxGame.masterScale/4, loc.y+height*MyGdxGame.masterScale*2, width*MyGdxGame.masterScale, height*MyGdxGame.masterScale);
         this.buttonType=buttonType;
         growWidth=0;
         growHeight=0;
@@ -61,15 +61,15 @@ public class Button {
     public void draw(SpriteBatch batch){
         buttonSprite.setScale((float) growWidth, (float) growHeight);
         buttonSprite.draw(batch);
-            if (growWidth < 1 && !doneGrowing) {
+            if (growWidth < 1*MyGdxGame.masterScale && !doneGrowing) {
                 growWidth += 0.05;
-            } else if (growWidth >= 1) {
+            } else if (growWidth >= 1*MyGdxGame.masterScale) {
                 doneGrowing = true;
             }
 
-            if (growHeight < 1 && !doneGrowing) {
+            if (growHeight < 1*MyGdxGame.masterScale && !doneGrowing) {
                 growHeight += 0.05;
-            } else if (growHeight >= 1) {
+            } else if (growHeight >= 1*MyGdxGame.masterScale) {
                 doneGrowing = true;
             }
 
@@ -91,7 +91,7 @@ public class Button {
                         buttonDown=false;
                     }
                     if(hitBox.contains(Gdx.input.getX(), Gdx.input.getY())) {
-                        if (!buttonDown && goButton && growWidth>=1 && growHeight>=1) {
+                        if (!buttonDown && goButton && growWidth>=1*MyGdxGame.masterScale && growHeight>=1*MyGdxGame.masterScale) {
                             MyGdxGame.getMainMenu().setStart(false);
                             MyGdxGame.getMainMenu().setCircleWidth(0);
                             MyGdxGame.getMainMenu().setCircleHeight(0);

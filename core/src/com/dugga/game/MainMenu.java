@@ -56,7 +56,7 @@ public class MainMenu {
         check=new Texture("check.png");
         arrowVisible=true;
         count=0;
-        phoneLoc=new Vector2(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2-phoneHeight/2);
+        phoneLoc=new Vector2(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2-phoneHeight*MyGdxGame.masterScale/2);
         highScoreLayout=new GlyphLayout();
         gamesPlayedLayout=new GlyphLayout();
         playerSet=true;
@@ -76,9 +76,9 @@ public class MainMenu {
             playerSet=false;
         }
         batch.draw(bg, 0, 0, width, height);
-        batch.draw(circleOutline, Gdx.graphics.getWidth() / 2-290/2, Gdx.graphics.getHeight() / 2-290/2, 290, 290);
+        batch.draw(circleOutline, Gdx.graphics.getWidth() / 2-290*MyGdxGame.masterScale/2, Gdx.graphics.getHeight() / 2-290*MyGdxGame.masterScale/2, 290*MyGdxGame.masterScale, 290*MyGdxGame.masterScale);
         batch.draw(circle, MyGdxGame.getPlayer().getLocPlayer().x-(float)circleWidth/2, MyGdxGame.getPlayer().getLocPlayer().y-(float)circleHeight/2, (float) circleWidth, (float) circleHeight);
-        batch.draw(phone, phoneLoc.x - phoneWidth / 2, phoneLoc.y, phoneWidth, phoneHeight);
+        batch.draw(phone, phoneLoc.x - phoneWidth*MyGdxGame.masterScale / 2, phoneLoc.y-phoneHeight*MyGdxGame.masterScale/2, phoneWidth*MyGdxGame.masterScale, phoneHeight*MyGdxGame.masterScale);
 
         count++;
         if (count>=25){
@@ -86,34 +86,36 @@ public class MainMenu {
             count=0;
         }
 
+        MyGdxGame.getScoreFont().getData().setScale(MyGdxGame.masterScale);
         highScoreLayout.setText(MyGdxGame.getScoreFont(), "High Score:"+MyGdxGame.getPlayer().getPrefs().getInteger("highScore"));
-        gamesPlayedLayout.setText(MyGdxGame.getScoreFont(), "Games Played:"+MyGdxGame.getPlayer().getPrefs().getInteger("gamesPlayed"));
+        gamesPlayedLayout.setText(MyGdxGame.getScoreFont(), "Games Played:" + MyGdxGame.getPlayer().getPrefs().getInteger("gamesPlayed"));
 
+        titleFont.getData().setScale(MyGdxGame.masterScale);
         titleLayout.setText(titleFont, "Bouncy");
         titleLayout2.setText(titleFont, "Stan");
         titleFont.draw(batch, "Bouncy", Gdx.graphics.getWidth() / 2 - titleLayout.width / 2, Gdx.graphics.getHeight() - 100 - titleLayout.height / 2);
-        titleFont.draw(batch, "Stan", Gdx.graphics.getWidth() / 2 - titleLayout2.width / 2, Gdx.graphics.getHeight() - (float) (titleLayout.height * 2.3) - titleLayout2.height / 2);
+        titleFont.draw(batch, "Stan", Gdx.graphics.getWidth() / 2 - titleLayout2.width / 2, Gdx.graphics.getHeight() - (float) (titleLayout.height * (2.3/MyGdxGame.masterScale)) - titleLayout2.height / 2);
 
+        tiltFont.getData().setScale(MyGdxGame.masterScale, MyGdxGame.masterScale + MyGdxGame.masterScale / 3.333f);
         tiltLayout.setText(tiltFont, "Tilt Flat to Play!");
-        tiltFont.getData().setScale(1, (float) 1.3);
-        tiltFont.draw(batch, "Tilt Flat to Play!", phoneLoc.x - tiltLayout.width / 2, phoneLoc.y - 125 - tiltLayout.height / 2);
+        tiltFont.draw(batch, "Tilt Flat to Play!", phoneLoc.x - tiltLayout.width / 2, phoneLoc.y - 200*MyGdxGame.masterScale - tiltLayout.height / 2);
 
         MyGdxGame.getScoreFont().draw(batch, "High Score:" + MyGdxGame.getPlayer().getPrefs().getInteger("highScore"), phoneLoc.x - highScoreLayout.width / 2, 200);
         MyGdxGame.getScoreFont().draw(batch, "Games Played:" + MyGdxGame.getPlayer().getPrefs().getInteger("gamesPlayed"), phoneLoc.x - gamesPlayedLayout.width / 2, 100);
 
         if (Gdx.input.getAccelerometerY()<1 && Gdx.input.getAccelerometerY()>-1){
-            batch.draw(check, phoneLoc.x-phoneWidth/2, phoneLoc.y+(float)(phoneHeight/4.125), phoneWidth, phoneWidth);
-            if (circleWidth<300 && circleHeight<300){
+            batch.draw(check, phoneLoc.x-phoneWidth*MyGdxGame.masterScale/2, phoneLoc.y-phoneWidth*MyGdxGame.masterScale/2, phoneWidth*MyGdxGame.masterScale, phoneWidth*MyGdxGame.masterScale);
+            if (circleWidth<300*MyGdxGame.masterScale && circleHeight<300*MyGdxGame.masterScale){
                 circleWidth+=5;
                 circleHeight+=5;
             }
         }
         else{
             if ((int)Gdx.input.getAccelerometerY()>1 && arrowVisible){
-                batch.draw(upArrow, phoneLoc.x - (float) (phoneWidth * 0.8) / 2, phoneLoc.y+(float)(phoneHeight/3.3), (float) (phoneWidth * 0.8), (float) (phoneWidth * 0.8));
+                batch.draw(upArrow, phoneLoc.x - (float) (phoneWidth * 0.8)*MyGdxGame.masterScale / 2, phoneLoc.y-(float) (phoneWidth * 0.8)*MyGdxGame.masterScale/2.2f, (float) (phoneWidth * 0.8)*MyGdxGame.masterScale, (float) (phoneWidth * 0.8)*MyGdxGame.masterScale);
             }
             else if ((int)Gdx.input.getAccelerometerY()<-1 && arrowVisible){
-                batch.draw(downArrow, phoneLoc.x - (float) (phoneWidth * 0.8) / 2, phoneLoc.y+(float)(phoneHeight/3), (float) (phoneWidth * 0.8), (float) (phoneWidth * 0.8));
+                batch.draw(upArrow, phoneLoc.x - (float) (phoneWidth * 0.8)*MyGdxGame.masterScale / 2, phoneLoc.y-(float) (phoneWidth * 0.8)*MyGdxGame.masterScale / 4, (float) (phoneWidth * 0.8)*MyGdxGame.masterScale, (float) (phoneWidth * 0.8)*MyGdxGame.masterScale);
             }
 
             if (circleWidth>0 && circleHeight>0){
@@ -123,7 +125,7 @@ public class MainMenu {
         }
 
         //executes when circle is big enough, initiating play
-        if (circleWidth>=300 && circleHeight>= 300){
+        if (circleWidth>=300*MyGdxGame.masterScale && circleHeight>= 300*MyGdxGame.masterScale){
             MyGdxGame.reset();
             startSound.play(1f);
             start=true;

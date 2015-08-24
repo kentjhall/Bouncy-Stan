@@ -1,16 +1,20 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
+import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
+import com.dugga.game.IActivityRequestHandler;
+import com.dugga.game.MyGdxGame;
+
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.coregraphics.CGSize;
-import org.robovm.apple.foundation.NSArray;
 import org.robovm.apple.foundation.NSAutoreleasePool;
-import org.robovm.apple.foundation.NSObject;
-import org.robovm.apple.foundation.NSString;
 import org.robovm.apple.uikit.UIApplication;
 import org.robovm.apple.uikit.UIScreen;
-import org.robovm.apple.uikit.UIView;
 import org.robovm.apple.uikit.UIViewController;
 import org.robovm.apple.uikit.UIWindow;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import admob.src.org.robovm.bindings.admob.GADAdSize;
 import admob.src.org.robovm.bindings.admob.GADBannerView;
@@ -18,19 +22,9 @@ import admob.src.org.robovm.bindings.admob.GADBannerViewDelegateAdapter;
 import admob.src.org.robovm.bindings.admob.GADRequest;
 import admob.src.org.robovm.bindings.admob.GADRequestError;
 
-import com.badlogic.gdx.Application;
-import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
-import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import com.badlogic.gdx.backends.iosrobovm.IOSGraphics;
-import com.badlogic.gdx.backends.iosrobovm.IOSViewControllerListener;
-import com.badlogic.gdx.utils.Logger;
-import com.dugga.game.IActivityRequestHandler;
-import com.dugga.game.MyGdxGame;
 public class IOSLauncher extends IOSApplication.Delegate implements IActivityRequestHandler{
-    private static final Logger log = new Logger(IOSLauncher.class.getName(), Application.LOG_DEBUG);
-    private static final boolean USE_TEST_DEVICES = true;
+    private static final boolean USE_TEST_DEVICES = false;
     private GADBannerView adview;
-    private boolean adsInitialized = false;
     private IOSApplication iosApplication;
     private UIViewController viewController;
     private UIWindow window;
@@ -41,6 +35,7 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
     public double adWidth;
     public double adHeight;
     private GADRequest request;
+    private boolean adInitialized=false;
 
     @Override
     protected IOSApplication createApplication() {
@@ -63,10 +58,11 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
         bannerWidth = (float) screenWidth;
         bannerHeight = (float) (bannerWidth / adWidth * adHeight);
 
-        window=new UIWindow(adview.getBounds());
+        window=new UIWindow(new CGRect((screenWidth / 2) - adWidth / 2, screenHeight-adHeight, bannerWidth, bannerHeight));
         window.setRootViewController(viewController);
 
-        adview.setFrame(new CGRect((screenWidth / 2) - adWidth / 2, screenHeight-adHeight, bannerWidth, bannerHeight));
+
+        adview.setFrame(window.getBounds());
 
         return iosApplication;
     }
@@ -79,19 +75,18 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
 
 
     public void initializeAds() {
-
-        adview = new GADBannerView(GADAdSize.smartBannerPortrait());
-        adview.setAdUnitID("ca-app-pub-4743789296025031/7095109830"); //put your secret key here
-        adview.setRootViewController(viewController);
-        viewController.getView().addSubview(adview);
+        if (!adInitialized) {
+            adview = new GADBannerView(GADAdSize.smartBannerPortrait());
+            adview.setAdUnitID("ca-app-pub-4743789296025031/7095109830"); //put your secret key here
+            adview.setRootViewController(viewController);
+            viewController.getView().addSubview(adview);
 
             request = GADRequest.create();
-//            if (USE_TEST_DEVICES) {
-//                final NSArray<?> testDevices = new NSArray<NSObject>(
-//                        new NSString(GADRequest.GAD_SIMULATOR_ID));
-//                request.setTestDevices(testDevices);
-//                log.debug("Test devices: " + request.getTestDevices());
-//            }
+
+            if (USE_TEST_DEVICES) {
+                final ArrayList<String> testDevices = new ArrayList<String>(Arrays.asList(GADRequest.GAD_SIMULATOR_ID));
+                request.setTestDevices(testDevices);
+            }
 
             adview.setDelegate(new GADBannerViewDelegateAdapter() {
                 @Override
@@ -106,14 +101,14 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
             });
 
             adview.loadRequest(request);
+            adInitialized=true;
+        }
      }
 
     @Override
     public void showAds(adState show) {
 
         switch (show){
-            case LOAD:
-                break;
             case SHOW:
                 window.makeKeyAndVisible();
                 break;

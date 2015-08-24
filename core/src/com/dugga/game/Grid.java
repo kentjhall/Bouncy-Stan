@@ -90,7 +90,7 @@ public class Grid {
         drawInstruct=true;
         moveLayout=new GlyphLayout();
         moveFont=new BitmapFont(Gdx.files.internal("fonts/scoreFont3.fnt"),Gdx.files.internal("fonts/scoreFont3.png"),false);
-        moveFont.getData().setScale(0.75f, 0.9f);
+        moveFont.getData().setScale(0.75f*MyGdxGame.masterScale, 0.9f*MyGdxGame.masterScale);
         moveLayout.setText(moveFont, "Tilt to Move Stan");
 //        twinkleCount=0;
 //        twinkleOn=true;

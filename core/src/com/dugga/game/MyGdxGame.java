@@ -24,7 +24,7 @@ public class MyGdxGame extends ApplicationAdapter {
     private static BitmapFont endFont;
     private static BitmapFont endFont2;
     private static double scoreFontScale;
-    private double endFontScale;
+    private static double endFontScale;
     private static GlyphLayout scoreFontLayout;
     private static GlyphLayout scoreFontLayout2;
     private static GlyphLayout endFontLayout;
@@ -41,6 +41,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public enum ScoreType{
         SCORE, END
     }
+    public static float masterScale;
 
     public MyGdxGame(IActivityRequestHandler handler) {
         requestHandler = handler;
@@ -78,6 +79,13 @@ public class MyGdxGame extends ApplicationAdapter {
 
         splash=true;
         splashFade=false;
+
+        if (Gdx.graphics.getWidth()<1080){
+            masterScale=0.65f;
+        }
+        else{
+            masterScale=1f;
+        }
     }
 
 	@Override
@@ -141,9 +149,9 @@ public class MyGdxGame extends ApplicationAdapter {
                 scoreFontLayout.setText(scoreFont, "" + player.getScore());
                 scoreFontLayout2.setText(scoreFont2, "" + player.getScore());
                 highScoreLayout.setText(scoreFont3, "Best:" + player.getPrefs().getInteger("highScore"));
-                scoreFont.getData().setScale((float) scoreFontScale, (float) scoreFontScale);
-                scoreFont2.getData().setScale((float) scoreFontScale, (float) scoreFontScale);
-                scoreFont3.getData().setScale((float) scoreFontScale, (float) scoreFontScale);
+                scoreFont.getData().setScale((float) scoreFontScale*masterScale, (float) scoreFontScale*masterScale);
+                scoreFont2.getData().setScale((float) scoreFontScale*masterScale, (float) scoreFontScale*masterScale);
+                scoreFont3.getData().setScale((float) scoreFontScale*masterScale, (float) scoreFontScale*masterScale);
 
                 if (scoreFontScale < 1) {
                     scoreFontScale += 0.1;
@@ -155,9 +163,9 @@ public class MyGdxGame extends ApplicationAdapter {
                 scoreFontLayout.setText(scoreFont, "" + player.getScore());
                 scoreFontLayout2.setText(scoreFont2, "" + player.getScore());
                 highScoreLayout.setText(scoreFont3, "Best:"+player.getPrefs().getInteger("highScore"));
-                scoreFont.getData().setScale((float) scoreFontScale, (float) scoreFontScale);
-                scoreFont2.getData().setScale((float) scoreFontScale, (float) scoreFontScale);
-                scoreFont3.getData().setScale((float) scoreFontScale, (float) scoreFontScale);
+                scoreFont.getData().setScale((float) scoreFontScale*masterScale, (float) scoreFontScale*masterScale);
+                scoreFont2.getData().setScale((float) scoreFontScale*masterScale, (float) scoreFontScale*masterScale);
+                scoreFont3.getData().setScale((float) scoreFontScale*masterScale, (float) scoreFontScale*masterScale);
 
                 if (scoreFontScale > 0.1) {
                     scoreFontScale -= 0.1;
@@ -167,18 +175,18 @@ public class MyGdxGame extends ApplicationAdapter {
                 deathMenu.draw(batch);
                 endFontLayout.setText(endFont, "" + player.getScore());
                 endFontLayout2.setText(endFont2, "" + player.getScore());
-                endFont.getData().setScale((float) endFontScale, (float) endFontScale);
-                endFont2.getData().setScale((float) endFontScale, (float) endFontScale);
+                endFont.getData().setScale((float) endFontScale*masterScale, (float) endFontScale*masterScale);
+                endFont2.getData().setScale((float) endFontScale*masterScale, (float) endFontScale*masterScale);
                 if (endFontScale < 1) {
-                    endFontScale += 0.05;
+                    endFontScale += 0.1;
                 }
             } else {
                 endFontLayout.setText(endFont, "" + player.getScore());
                 endFontLayout2.setText(endFont2, "" + player.getScore());
-                endFont.getData().setScale((float) endFontScale, (float) endFontScale);
-                endFont2.getData().setScale((float) endFontScale, (float) endFontScale);
+                endFont.getData().setScale((float) endFontScale*masterScale, (float) endFontScale*masterScale);
+                endFont2.getData().setScale((float) endFontScale*masterScale, (float) endFontScale*masterScale);
                 if (endFontScale > 0.1) {
-                    endFontScale -= 0.05;
+                    endFontScale -= 0.1;
                 }
             }
         }

@@ -29,7 +29,7 @@ public class DeathMenu{
         width = 810;
         height=810;
         loc=new Vector2(Gdx.graphics.getWidth()/2-width/2, Gdx.graphics.getHeight()/2-height/2);
-        restartButton=new Button(Button.Type.RESTART, (int)loc.x+width/2, (int)loc.y+height/2-200);
+        restartButton=new Button(Button.Type.RESTART, (int)loc.x+(int)(width)/2, (int)loc.y+(int)(height)/2-(int)(200*MyGdxGame.masterScale));
         growWidth=0.1;
         growHeight=0.1;
         menuSprite=new Sprite(menuImg, width, height);
@@ -43,13 +43,13 @@ public class DeathMenu{
             MyGdxGame.getRequestHandler().showAds(IActivityRequestHandler.adState.SHOW);
             showAd=false;
         }
-        MyGdxGame.getScoreFont3().getData().setScale((float) growWidth, (float) growHeight);
+        MyGdxGame.getScoreFont3().getData().setScale((float) growWidth*MyGdxGame.masterScale, (float) growHeight*MyGdxGame.masterScale);
         menuSprite.setScale((float) growWidth, (float) growHeight);
         menuSprite.draw(batch);
-        if (growWidth<1){
+        if (growWidth<1*MyGdxGame.masterScale){
             growWidth+=0.05;
         }
-        if (growHeight<1){
+        if (growHeight<1*MyGdxGame.masterScale){
             growHeight+=0.05;
         }
 
@@ -63,16 +63,16 @@ public class DeathMenu{
         restartButton.draw(batch);
         if (MyGdxGame.getPlayer().getScore()>MyGdxGame.getPlayer().getStartingHighScore() && MyGdxGame.getPlayer().getStartingHighScore()>0) {
             if (scoreWhite) {
-                MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550), MyGdxGame.ScoreType.END, Color.WHITE);
+                MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550*MyGdxGame.masterScale), MyGdxGame.ScoreType.END, Color.WHITE);
             }
             else if (!scoreWhite) {
-                MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550), MyGdxGame.ScoreType.END, null);
+                MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550*MyGdxGame.masterScale), MyGdxGame.ScoreType.END, null);
             }
         }
         else{
-            MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550), MyGdxGame.ScoreType.END, Color.WHITE);
+            MyGdxGame.drawScore(restartButton.getLocX(), (float) (restartButton.getLocY() + 550*MyGdxGame.masterScale), MyGdxGame.ScoreType.END, Color.WHITE);
         }
-        MyGdxGame.getScoreFont3().draw(batch, "Best:" + MyGdxGame.getPlayer().getPrefs().getInteger("highScore"), restartButton.getLocX() - MyGdxGame.getHighScoreLayout().width / 2, (float) (restartButton.getLocY() + 267));
+        MyGdxGame.getScoreFont3().draw(batch, "Best:" + MyGdxGame.getPlayer().getPrefs().getInteger("highScore"), restartButton.getLocX() - MyGdxGame.getHighScoreLayout().width / 2, (float) (restartButton.getLocY() + 267*MyGdxGame.masterScale));
     }
 
     public void dispose(){

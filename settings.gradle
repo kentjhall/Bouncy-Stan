@@ -1,2 +1,1 @@
-include ':mylibrary'
 include 'android', 'ios', 'core', 'admob'
