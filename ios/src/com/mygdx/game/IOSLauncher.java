@@ -109,6 +109,8 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
     public void showAds(adState show) {
 
         switch (show){
+            case LOAD:
+                break;
             case SHOW:
                 window.makeKeyAndVisible();
                 break;
