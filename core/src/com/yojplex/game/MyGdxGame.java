@@ -74,7 +74,7 @@ public class MyGdxGame extends ApplicationAdapter {
         splashAlpha=0;
         batchAlpha=0;
 
-        scoreFont = new BitmapFont(Gdx.files.internal("fonts/scoreFont.fnt"),Gdx.files.internal("fonts/scoreFont.png"),false);
+        scoreFont = new BitmapFont(Gdx.files.internal("fonts/scoreFont3.fnt"),Gdx.files.internal("fonts/scoreFont3.png"),false);
         scoreFont2=new BitmapFont(Gdx.files.internal("fonts/scoreFont2.fnt"),Gdx.files.internal("fonts/scoreFont2.png"),false);
         scoreFont3=new BitmapFont(Gdx.files.internal("fonts/scoreFont3.fnt"),Gdx.files.internal("fonts/scoreFont3.png"),false);
         scoreFont.getData().setScale((float) scoreFontScale, (float) scoreFontScale);
@@ -217,7 +217,7 @@ public class MyGdxGame extends ApplicationAdapter {
         switch (scoreType){
             case SCORE:
                 if (color==Color.BLACK) {
-                    scoreFont3.draw(batch, "" + player.getScore(), x - scoreFontLayout.width / 2, y - scoreFontLayout.height / 2);
+                    scoreFont.draw(batch, "" + player.getScore(), x - scoreFontLayout.width / 2, y - scoreFontLayout.height / 2);
                 }
                 else{
                     if (scoreWhite && scoreFontScale>0.1){
