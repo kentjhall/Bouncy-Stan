@@ -132,6 +132,12 @@ public class Grid {
         updateGround();
         blockTransition();
 
+        if (MyGdxGame.getPlayer().getScore() > MyGdxGame.getPlayer().getStartingHighScore() && MyGdxGame.getPlayer().getStartingHighScore() > 0) {
+            MyGdxGame.drawScore(Gdx.graphics.getWidth() - Gdx.graphics.getWidth() / 18, Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 96, MyGdxGame.ScoreType.SCORE, null);
+        } else {
+            MyGdxGame.drawScore(Gdx.graphics.getWidth() - Gdx.graphics.getWidth() / 18, Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 96, MyGdxGame.ScoreType.SCORE, Color.BLACK);
+        }
+
         if (drawInstruct) {
             moveFont.setColor(1, 1, 1, (float)fontAlpha);
             moveFont.draw(batch, "Tilt to Move Stan", Gdx.graphics.getWidth() / 2 - moveLayout.width / 2, Gdx.graphics.getHeight() - 200 - moveLayout.height / 2);
@@ -417,11 +423,6 @@ public class Grid {
                     hitX = column5 - height / 2;
 
                     emptyBox = boxCount;
-                    if (MyGdxGame.getPlayer().getScore() > MyGdxGame.getPlayer().getStartingHighScore() && MyGdxGame.getPlayer().getStartingHighScore() > 0) {
-                        MyGdxGame.drawScore(Gdx.graphics.getWidth() - Gdx.graphics.getWidth() / 18, Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 96, MyGdxGame.ScoreType.SCORE, null);
-                    } else {
-                        MyGdxGame.drawScore(Gdx.graphics.getWidth() - Gdx.graphics.getWidth() / 18, Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 96, MyGdxGame.ScoreType.SCORE, Color.BLACK);
-                    }
                     break;
                 case 30:
                     hitY = row1b - width / 2;

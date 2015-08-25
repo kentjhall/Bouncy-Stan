@@ -217,7 +217,7 @@ public class MyGdxGame extends ApplicationAdapter {
         switch (scoreType){
             case SCORE:
                 if (color==Color.BLACK) {
-                    scoreFont.draw(batch, "" + player.getScore(), x - scoreFontLayout.width / 2, y - scoreFontLayout.height / 2);
+                    scoreFont3.draw(batch, "" + player.getScore(), x - scoreFontLayout.width / 2, y - scoreFontLayout.height / 2);
                 }
                 else{
                     if (scoreWhite && scoreFontScale>0.1){
