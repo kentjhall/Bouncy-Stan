@@ -137,12 +137,12 @@ public class Player {
             dustAnimation.setFrameDuration((float)dustInterval);
         }
         if (drawCircle) {
-            batch.draw(circle, locPlayer.x - (float) maxWidth / 2, locPlayer.y - (float) maxHeight / 2);
-            if (width<maxWidth && height<maxHeight){
+            batch.draw(circle, locPlayer.x - (float) maxWidth*MyGdxGame.masterScale / 2, locPlayer.y - (float) maxHeight*MyGdxGame.masterScale / 2, maxWidth*MyGdxGame.masterScale, maxHeight*MyGdxGame.masterScale);
+            if (width<maxWidth*MyGdxGame.masterScale && height<maxHeight*MyGdxGame.masterScale){
                 width+=40;
                 height+=40;
             }
-            else if (width>=maxWidth && height>=maxHeight){
+            else if (width>=maxWidth*MyGdxGame.masterScale && height>=maxHeight*MyGdxGame.masterScale){
                 drawCircle=false;
             }
         }
@@ -205,7 +205,7 @@ public class Player {
         bounce();
 
         //checks if player hit ground
-        if (width<=minWidth && height<=minHeight && !drawCircle){
+        if (width<=minWidth*MyGdxGame.masterScale && height<=minHeight*MyGdxGame.masterScale && !drawCircle){
             hitGround=true;
         }
         else{
@@ -218,7 +218,7 @@ public class Player {
         accelX = Gdx.input.getAccelerometerX();
         accelY = Gdx.input.getAccelerometerY();
 
-        moveSpeed=bounceSpeed*speedRatio;
+        moveSpeed=bounceSpeed*speedRatio*MyGdxGame.masterScale;
 
         if ((int)accelX==(int)startAccelX){
             velPlayer.x=0*(float)moveSpeed;
@@ -301,11 +301,11 @@ public class Player {
 
     public void bounce(){
         //when ball at largest point, start shrinking
-        if (width>=maxWidth && height>=maxHeight){
+        if (width>=maxWidth*MyGdxGame.masterScale && height>=maxHeight*MyGdxGame.masterScale){
             growing=false;
         }
         //when ball at smallest point, start growing
-        else if (width<=minWidth && height<=minHeight && !drawCircle){
+        else if (width<=minWidth*MyGdxGame.masterScale && height<=minHeight*MyGdxGame.masterScale && !drawCircle){
             scoring=true;
             if (dead){
                 deathChange=false;
@@ -328,7 +328,7 @@ public class Player {
             }
         }
 
-        if (width>minWidth && height>minHeight){
+        if (width>minWidth*MyGdxGame.masterScale && height>minHeight*MyGdxGame.masterScale){
             if (scoring) {
                 score++;
                 scoring=false;
@@ -338,14 +338,14 @@ public class Player {
         //when ball is going down
         if (!growing){
             if (width>0 && height>0) {
-                width-=bounceSpeed;
-                height-=bounceSpeed;
+                width-=bounceSpeed*MyGdxGame.masterScale;
+                height-=bounceSpeed*MyGdxGame.masterScale;
             }
         }
         //when ball is going up
         else if (growing){
-            width+=bounceSpeed*0.9;
-            height+=bounceSpeed*0.9;
+            width+=bounceSpeed*MyGdxGame.masterScale*0.9;
+            height+=bounceSpeed*MyGdxGame.masterScale*0.9;
         }
     }
 

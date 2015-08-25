@@ -2,7 +2,7 @@ sourceSets.main.java.srcDirs = ["src/"]
 sourceCompatibility = '1.7'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 ext {
-    mainClassName = "com.mygdx.game.IOSLauncher"
+    mainClassName = "com.yojplex.game.IOSLauncher"
 }
 launchIPhoneSimulator.dependsOn build
 launchIPadSimulator.dependsOn build
@@ -14,3 +14,10 @@ eclipse.project {
 }
 dependencies {
 }
+//robovm {
+//    iosSignIdentity = "iPhone Distribution: Kent Hall (6UEYNP4T2Q)"
+//    iosProvisioningProfile = "BStan"
+//    iosSkipSigning = false
+//    stdoutFifo = ""
+//    stderrFifo = ""
+//}

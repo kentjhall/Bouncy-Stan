@@ -1,14 +1,15 @@
-package com.mygdx.game;
+package com.yojplex.game;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import com.yojplex.game.IActivityRequestHandler;
-import com.yojplex.game.MyGdxGame;
 
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.coregraphics.CGSize;
 import org.robovm.apple.foundation.NSAutoreleasePool;
 import org.robovm.apple.uikit.UIApplication;
+import org.robovm.apple.uikit.UIColor;
+import org.robovm.apple.uikit.UIDevice;
+import org.robovm.apple.uikit.UIInterfaceOrientation;
 import org.robovm.apple.uikit.UIScreen;
 import org.robovm.apple.uikit.UIViewController;
 import org.robovm.apple.uikit.UIWindow;
@@ -60,9 +61,11 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
 
         window=new UIWindow(new CGRect((screenWidth / 2) - adWidth / 2, screenHeight-adHeight, bannerWidth, bannerHeight));
         window.setRootViewController(viewController);
-
+        window.setBackgroundColor(UIColor.clear());
 
         adview.setFrame(window.getBounds());
+
+        MyGdxGame.setOs(MyGdxGame.OS.IOS);
 
         return iosApplication;
     }

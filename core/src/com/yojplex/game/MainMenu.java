@@ -106,8 +106,8 @@ public class MainMenu {
         if (Gdx.input.getAccelerometerY()<1 && Gdx.input.getAccelerometerY()>-1){
             batch.draw(check, phoneLoc.x-phoneWidth*MyGdxGame.masterScale/2, phoneLoc.y-phoneWidth*MyGdxGame.masterScale/2, phoneWidth*MyGdxGame.masterScale, phoneWidth*MyGdxGame.masterScale);
             if (circleWidth<300*MyGdxGame.masterScale && circleHeight<300*MyGdxGame.masterScale){
-                circleWidth+=5;
-                circleHeight+=5;
+                circleWidth+=5*MyGdxGame.masterScale;
+                circleHeight+=5*MyGdxGame.masterScale;
             }
         }
         else{
@@ -119,8 +119,8 @@ public class MainMenu {
             }
 
             if (circleWidth>0 && circleHeight>0){
-                circleWidth-=5;
-                circleHeight-=5;
+                circleWidth-=5*MyGdxGame.masterScale;
+                circleHeight-=5*MyGdxGame.masterScale;
             }
         }
 

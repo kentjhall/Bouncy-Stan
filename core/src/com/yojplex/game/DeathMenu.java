@@ -43,13 +43,13 @@ public class DeathMenu{
             com.yojplex.game.MyGdxGame.getRequestHandler().showAds(IActivityRequestHandler.adState.SHOW);
             showAd=false;
         }
-        com.yojplex.game.MyGdxGame.getScoreFont3().getData().setScale((float) growWidth* com.yojplex.game.MyGdxGame.masterScale, (float) growHeight* com.yojplex.game.MyGdxGame.masterScale);
+        MyGdxGame.getScoreFont3().getData().setScale((float) growWidth, (float) growHeight);
         menuSprite.setScale((float) growWidth, (float) growHeight);
         menuSprite.draw(batch);
-        if (growWidth<1* com.yojplex.game.MyGdxGame.masterScale){
+        if (growWidth<1* MyGdxGame.masterScale){
             growWidth+=0.05;
         }
-        if (growHeight<1* com.yojplex.game.MyGdxGame.masterScale){
+        if (growHeight<1* MyGdxGame.masterScale){
             growHeight+=0.05;
         }
 

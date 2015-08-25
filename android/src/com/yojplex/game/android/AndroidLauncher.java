@@ -14,6 +14,7 @@ import com.yojplex.game.IActivityRequestHandler;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.yojplex.game.MyGdxGame;
 
 public class AndroidLauncher extends AndroidApplication implements IActivityRequestHandler {
 	private RelativeLayout layout;
@@ -51,6 +52,8 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 		// Hook it all up
 		setContentView(layout);
 		layout.bringChildToFront(adView);
+
+		MyGdxGame.setOs(MyGdxGame.OS.ANDROID);
 	}
 
 	private final int LOAD_ADS=2;

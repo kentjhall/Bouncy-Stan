@@ -37,13 +37,17 @@ public class MyGdxGame extends ApplicationAdapter {
     private Texture splashImg;
     private double splashAlpha;
     private double batchAlpha;
-    private static com.yojplex.game.IActivityRequestHandler requestHandler;
+    private static IActivityRequestHandler requestHandler;
     public enum ScoreType{
         SCORE, END
     }
+    public enum OS{
+        IOS, ANDROID
+    }
+    private static OS os;
     public static float masterScale;
 
-    public MyGdxGame(com.yojplex.game.IActivityRequestHandler handler) {
+    public MyGdxGame(IActivityRequestHandler handler) {
         requestHandler = handler;
     }
 
@@ -61,7 +65,12 @@ public class MyGdxGame extends ApplicationAdapter {
         endFontScale=0.1;
         count=0;
         scoreWhite=false;
-        splashImg=new Texture("splash.png");
+        if ((float)Gdx.graphics.getWidth()/(float)Gdx.graphics.getHeight()<0.61) {
+            splashImg = new Texture("splash.png");
+        }
+        else{
+            splashImg=new Texture("splashTablet.png");
+        }
         splashAlpha=0;
         batchAlpha=0;
 
@@ -80,7 +89,10 @@ public class MyGdxGame extends ApplicationAdapter {
         splash=true;
         splashFade=false;
 
-        if (Gdx.graphics.getWidth()<1080){
+        if (Gdx.graphics.getWidth()<750){
+            masterScale=0.55f;
+        }
+        else if (Gdx.graphics.getWidth()<1080){
             masterScale=0.65f;
         }
         else{
@@ -94,7 +106,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         splashBatch.begin();
-        if (splash){
+        if (splash && os!=OS.IOS){
             if (!splashFade) {
                 Gdx.gl.glClearColor(0, 0, 0, 0);
                 Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -122,6 +134,9 @@ public class MyGdxGame extends ApplicationAdapter {
                     }
                 }
             }, 2);
+        }
+        else{
+            splash=false;
         }
         splashBatch.end();
         batch.begin();
@@ -292,8 +307,12 @@ public class MyGdxGame extends ApplicationAdapter {
         return endFontLayout;
     }
 
-    public static com.yojplex.game.IActivityRequestHandler getRequestHandler(){
+    public static IActivityRequestHandler getRequestHandler(){
         return requestHandler;
+    }
+
+    public static void setOs(OS os){
+        MyGdxGame.os=os;
     }
 
 }

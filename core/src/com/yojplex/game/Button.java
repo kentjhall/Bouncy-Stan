@@ -43,13 +43,13 @@ public class Button {
                 buttonImg=new Texture("retryButton.png");
                 break;
         }
-        hitBox=new Rectangle(loc.x+width* com.yojplex.game.MyGdxGame.masterScale/4, loc.y+height* com.yojplex.game.MyGdxGame.masterScale*2, width* com.yojplex.game.MyGdxGame.masterScale, height* com.yojplex.game.MyGdxGame.masterScale);
         this.buttonType=buttonType;
         growWidth=0;
         growHeight=0;
         buttonSprite=new Sprite(buttonImg, width, height);
         buttonSprite.setOriginCenter();
         buttonSprite.setPosition(loc.x, loc.y);
+        hitBox=new Rectangle(loc.x+width/2-width*MyGdxGame.masterScale/2, loc.y+height+height*MyGdxGame.masterScale/2, width*MyGdxGame.masterScale, height*MyGdxGame.masterScale);
         inputProcessor=new InputProcessor();
         Gdx.input.setInputProcessor(inputProcessor);
         buttonDown=false;
@@ -61,15 +61,15 @@ public class Button {
     public void draw(SpriteBatch batch){
         buttonSprite.setScale((float) growWidth, (float) growHeight);
         buttonSprite.draw(batch);
-            if (growWidth < 1* com.yojplex.game.MyGdxGame.masterScale && !doneGrowing) {
+            if (growWidth < 1* MyGdxGame.masterScale && !doneGrowing) {
                 growWidth += 0.05;
-            } else if (growWidth >= 1* com.yojplex.game.MyGdxGame.masterScale) {
+            } else if (growWidth >= 1* MyGdxGame.masterScale) {
                 doneGrowing = true;
             }
 
-            if (growHeight < 1* com.yojplex.game.MyGdxGame.masterScale && !doneGrowing) {
+            if (growHeight < 1* MyGdxGame.masterScale && !doneGrowing) {
                 growHeight += 0.05;
-            } else if (growHeight >= 1* com.yojplex.game.MyGdxGame.masterScale) {
+            } else if (growHeight >= 1* MyGdxGame.masterScale) {
                 doneGrowing = true;
             }
 
