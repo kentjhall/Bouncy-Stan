@@ -115,7 +115,7 @@ public class MainMenu {
                 batch.draw(upArrow, phoneLoc.x - (float) (phoneWidth * 0.8)*MyGdxGame.masterScale / 2, phoneLoc.y-(float) (phoneWidth * 0.8)*MyGdxGame.masterScale/2.2f, (float) (phoneWidth * 0.8)*MyGdxGame.masterScale, (float) (phoneWidth * 0.8)*MyGdxGame.masterScale);
             }
             else if ((int)Gdx.input.getAccelerometerY()<-1 && arrowVisible){
-                batch.draw(upArrow, phoneLoc.x - (float) (phoneWidth * 0.8)*MyGdxGame.masterScale / 2, phoneLoc.y-(float) (phoneWidth * 0.8)*MyGdxGame.masterScale / 4, (float) (phoneWidth * 0.8)*MyGdxGame.masterScale, (float) (phoneWidth * 0.8)*MyGdxGame.masterScale);
+                batch.draw(downArrow, phoneLoc.x - (float) (phoneWidth * 0.8)*MyGdxGame.masterScale / 2, phoneLoc.y-(float) (phoneWidth * 0.8)*MyGdxGame.masterScale/2.2f, (float) (phoneWidth * 0.8)*MyGdxGame.masterScale, (float) (phoneWidth * 0.8)*MyGdxGame.masterScale);
             }
 
             if (circleWidth>0 && circleHeight>0){
