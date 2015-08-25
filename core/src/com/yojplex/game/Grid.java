@@ -133,9 +133,9 @@ public class Grid {
         blockTransition();
 
         if (MyGdxGame.getPlayer().getScore() > MyGdxGame.getPlayer().getStartingHighScore() && MyGdxGame.getPlayer().getStartingHighScore() > 0) {
-            MyGdxGame.drawScore(Gdx.graphics.getWidth() - Gdx.graphics.getWidth() / 18, Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 96, MyGdxGame.ScoreType.SCORE, null);
+            MyGdxGame.drawScore(Gdx.graphics.getWidth() - width / 10, Gdx.graphics.getHeight() - 20*MyGdxGame.masterScale, MyGdxGame.ScoreType.SCORE, null);
         } else {
-            MyGdxGame.drawScore(Gdx.graphics.getWidth() - Gdx.graphics.getWidth() / 18, Gdx.graphics.getHeight() - Gdx.graphics.getHeight() / 96, MyGdxGame.ScoreType.SCORE, Color.BLACK);
+            MyGdxGame.drawScore(Gdx.graphics.getWidth() - width / 10, Gdx.graphics.getHeight() - 20*MyGdxGame.masterScale, MyGdxGame.ScoreType.SCORE, null);
         }
 
         if (drawInstruct) {
