@@ -14,10 +14,10 @@ eclipse.project {
 }
 dependencies {
 }
-//robovm {
-//    iosSignIdentity = "iPhone Distribution: Kent Hall (6UEYNP4T2Q)"
-//    iosProvisioningProfile = "BStan"
-//    iosSkipSigning = false
-//    stdoutFifo = ""
-//    stderrFifo = ""
-//}
+robovm {
+    iosSignIdentity = "iPhone Distribution: Kent Hall (6UEYNP4T2Q)"
+    iosProvisioningProfile = "BounceS"
+    iosSkipSigning = false
+    stdoutFifo = ""
+    stderrFifo = ""
+}
